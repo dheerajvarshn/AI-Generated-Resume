@@ -76,7 +76,7 @@ const ProjectsPage = () => {
             Projects
           </Typography>
           <Grid container spacing={4}>
-            {userData[0].projects?.map((project, index) => (
+            {userData.projects?.map((project, index) => (
               <Grid item xs={12} sm={6} md={4} key={index}>
                 <motion.div
                   whileHover={{ scale: 1.05 }}

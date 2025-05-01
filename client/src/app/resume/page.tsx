@@ -66,11 +66,11 @@ const ResumePage = () => {
             Professional Experience
           </Typography>
           <Timeline>
-            {userData[0].experience?.map((exp, index) => (
+            {userData.experience?.map((exp, index) => (
               <TimelineItem key={index}>
                 <TimelineSeparator>
                   <TimelineDot color="primary" />
-                  {index < userData[0].experience.length - 1 && <TimelineConnector />}
+                  {index < userData.experience.length - 1 && <TimelineConnector />}
                 </TimelineSeparator>
                 <TimelineContent>
                   <Paper sx={{ p: 3 }}>
@@ -92,11 +92,11 @@ const ResumePage = () => {
             Education
           </Typography>
           <Timeline>
-            {userData[0]?.education?.map((edu, index) => (
+            {userData?.education?.map((edu, index) => (
               <TimelineItem key={index}>
                 <TimelineSeparator>
                   <TimelineDot color="secondary" />
-                  {index < userData[0].education.length - 1 && <TimelineConnector />}
+                  {index < userData.education.length - 1 && <TimelineConnector />}
                 </TimelineSeparator>
                 <TimelineContent>
                   <Paper sx={{ p: 3 }}>
@@ -115,7 +115,7 @@ const ResumePage = () => {
             Skills
           </Typography>
           <Grid container spacing={3}>
-            {userData[0]?.skills?.map((skill, index) => (
+            {userData?.skills?.map((skill, index) => (
               <Grid item xs={12} sm={6} key={index}>
                 <Paper sx={{ p: 3 }}>
                   <Typography variant="h6" gutterBottom>
