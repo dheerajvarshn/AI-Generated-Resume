@@ -1,14 +1,31 @@
 const mongoose = require('mongoose');
 const User = require('./models/User');
 const bcrypt = require('bcryptjs');
+const dotenv = require('dotenv');
 
-// Connect to MongoDB
-mongoose.connect('mongodb://localhost:27017/portfolio', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-.then(() => console.log('Connected to MongoDB'))
-.catch((error) => console.error('MongoDB connection error:', error));
+// Load environment variables
+dotenv.config();
+
+// Only connect to MongoDB if this file is run directly
+if (require.main === module) {
+  // Connect to MongoDB
+  mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/portfolio', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 5000,
+    socketTimeoutMS: 45000,
+    family: 4  // Force IPv4
+  })
+  .then(() => console.log('Connected to MongoDB'))
+  .catch((error) => {
+    console.error('MongoDB connection error:', error);
+    console.log('Connection string used (redacted):', 
+      process.env.MONGODB_URI ? 
+      process.env.MONGODB_URI.replace(/:([^:@]+)@/, ':****@') : 
+      'Not provided');
+    process.exit(1);
+  });
+}
 
 const initialData = {
   // User credentials
@@ -141,12 +158,25 @@ const seedDatabase = async () => {
     
     await user.save();
     console.log('Database seeded successfully with user data!');
-    process.exit(0);
+    
+    // Only exit if this file is run directly
+    if (require.main === module) {
+      process.exit(0);
+    }
+    return true;
   } catch (error) {
     console.error('Error seeding database:', error);
-    process.exit(1);
+    if (require.main === module) {
+      process.exit(1);
+    }
+    return false;
   }
 };
 
-// Run the seed function
-seedDatabase(); 
+// Run the seed function if this file is run directly
+if (require.main === module) {
+  seedDatabase();
+}
+
+// Export the initialData and seedDatabase function
+module.exports = { initialData, seedDatabase }; 

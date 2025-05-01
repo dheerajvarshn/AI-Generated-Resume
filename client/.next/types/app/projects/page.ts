@@ -1,4 +1,4 @@
-// File: C:\Users\hp\Desktop\resume\resume-portfolio\client\src\app\projects\page.tsx
+// File: C:\Users\hp\Documents\GitHub\AI-Generated-Resume\client\src\app\projects\page.tsx
 import * as entry from '../../../../src/app/projects/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
