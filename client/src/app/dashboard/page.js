@@ -12,14 +12,10 @@ import ResumeView from '../../components/dashboard/ResumeView';
 import { useRouter } from 'next/navigation';
 
 export default function Dashboard() {
-  const { logout } = useAuth();
+
   const router = useRouter();
   const [currentTab, setCurrentTab] = React.useState(0);
 
-  const handleLogout = () => {
-    logout();
-    router.push('/login');
-  };
 
   const handleTabChange = (event, newValue) => {
     setCurrentTab(newValue);
@@ -32,9 +28,7 @@ export default function Dashboard() {
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
             Portfolio Dashboard
           </Typography>
-          <Button color="inherit" onClick={handleLogout}>
-            Logout
-          </Button>
+       
         </Toolbar>
       </AppBar>
       

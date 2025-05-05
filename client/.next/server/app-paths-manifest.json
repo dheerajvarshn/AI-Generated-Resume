@@ -1,10 +1,10 @@
 {
   "/_not-found": "app/_not-found.js",
-  "/dashboard/page": "app/dashboard/page.js",
   "/contact/page": "app/contact/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/login/page": "app/login/page.js",
   "/page": "app/page.js",
   "/projects/page": "app/projects/page.js",
   "/register/page": "app/register/page.js",
-  "/login/page": "app/login/page.js",
   "/resume/page": "app/resume/page.js"
 }
